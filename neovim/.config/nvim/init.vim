@@ -21,7 +21,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
 Plug 'machakann/vim-highlightedyank'
 Plug 'andymass/vim-matchup'
-Plug 'colorscheme base16-default-dark'
+Plug 'chriskempson/base16-vim'
 
 " Fuzzy finder
 Plug 'airblade/vim-rooter'
@@ -55,6 +55,9 @@ if has('nvim')
     noremap <C-q> :confirm qall<CR>
 end
 
+" Setting up python path, make sure to have python3 -m pip install pynvim
+let g:python3_host_prog="python3"
+
 " deal with colors
 if !has('gui_running')
   set t_Co=256
@@ -63,14 +66,12 @@ if (match($TERM, "-256color") != -1) && (match($TERM, "screen-256color") == -1)
   " screen does not (yet) support truecolor
   set termguicolors
 endif
-" Colors
-set background=dark
-colorscheme base16-gruvbox-dark-hard
 hi Normal ctermbg=NONE
 " Get syntax
 syntax on
 
 " Plugin settings
+let g:loaded_matchit = 1
 let g:secure_modelines_allowed_items = [
                 \ "textwidth",   "tw",
                 \ "softtabstop", "sts",
@@ -85,8 +86,13 @@ let g:secure_modelines_allowed_items = [
                 \ ]
 
 " Base16
+" Colors
+set background=dark
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
 let base16colorspace=256
-let g:base16_shell_path="~/dev/others/base16/builder/templates/shell/scripts/"
 
 " Lightline
 " let g:lightline = { 'colorscheme': 'wombat' }
@@ -115,9 +121,10 @@ let javaScript_fold=0
 " only lint on save
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 1
-let g:ale_lint_on_save = 0
+let g:ale_lint_on_save = 1
 let g:ale_lint_on_enter = 0
 let g:ale_virtualtext_cursor = 1
+let g:ale_open_list = 1
 let g:ale_rust_rls_config = {
 	\ 'rust': {
 		\ 'all_targets': 1,
@@ -168,6 +175,9 @@ let g:rust_clip_command = 'xclip -selection clipboard'
 "let g:racer_cmd = "/usr/bin/racer"
 "let g:racer_experimental_completer = 1
 let $RUST_SRC_PATH = systemlist("rustc --print sysroot")[0] . "/lib/rustlib/src/rust/src"
+
+" Python
+autocmd BufWritePre *.py 0,$!python3 -m yapf
 
 " Completion
 autocmd BufEnter * call ncm2#enable_for_buffer()

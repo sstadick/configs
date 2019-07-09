@@ -15,6 +15,7 @@ BROWSER=firefox
 NAME DEFAULT="Seth Stadick"
 EMAIL=sstadick@gmail.com
 
+PATH DEFAULT=${PATH}:/home/@{PAM_USER}/.config/base16-shell/
 PATH DEFAULT=${PATH}:/home/@{PAM_USER}/bin
 PATH DEFAULT=${PATH}:/home/@{PAM_USER}/.cargo/bin
 PATH DEFAULT=${PATH}:/home/@{PAM_USER}/.npm-global/bin
