@@ -8,7 +8,6 @@ let mapleader = "\<Space>"
 " Load vundle
 set nocompatible
 filetype off
-set rtp+=~/dev/others/base16/builder/templates/vim/
 call plug#begin()
 
 " Load plugins
@@ -22,6 +21,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
 Plug 'machakann/vim-highlightedyank'
 Plug 'andymass/vim-matchup'
+Plug 'colorscheme base16-default-dark'
 
 " Fuzzy finder
 Plug 'airblade/vim-rooter'
