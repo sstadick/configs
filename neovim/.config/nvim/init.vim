@@ -16,6 +16,7 @@ Plug 'ciaranm/securemodelines'
 Plug 'vim-scripts/localvimrc'
 Plug 'justinmk/vim-sneak'
 Plug 'git@github.com:cohama/lexima.vim.git'
+Plug 'scrooloose/nerdcommenter'
 
 " GUI enhancements
 Plug 'itchyny/lightline.vim'
