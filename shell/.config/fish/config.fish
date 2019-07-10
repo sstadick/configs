@@ -6,7 +6,7 @@ source $HOME/.config/fish/env.fish
 abbr -a vim 'nvim'
 
 if status --is-interactive
-	tmux ^ /dev/null; and exec true
+	tmux -2 ^ /dev/null; and exec true
 end
 
 if command -v exa > /dev/null

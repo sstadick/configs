@@ -47,6 +47,8 @@ Plug 'rust-lang/rust.vim'
 Plug 'dag/vim-fish'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+Plug 'vim-scripts/groovy.vim'
+Plug 'LukeGoodsell/nextflow-vim'
 
 call plug#end()
 
@@ -93,7 +95,6 @@ if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
 endif
-let base16colorspace=256
 
 " Lightline
 " let g:lightline = { 'colorscheme': 'wombat' }
@@ -125,7 +126,7 @@ let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_enter = 0
 let g:ale_virtualtext_cursor = 1
-let g:ale_open_list = 1
+let g:ale_open_list = 0
 let g:ale_rust_rls_config = {
 	\ 'rust': {
 		\ 'all_targets': 1,
@@ -421,6 +422,7 @@ autocmd BufRead *.lds set filetype=ld
 autocmd BufRead *.tex set filetype=tex
 autocmd BufRead *.trm set filetype=c
 autocmd BufRead *.xlsx.axlsx set filetype=ruby
+autocmd BufRead *.nf set filetype=nextflow
 
 " Script plugins
 autocmd Filetype html,xml,xsl,php source ~/.config/nvim/scripts/closetag.vim
