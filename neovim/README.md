@@ -1,7 +1,16 @@
 # Setting up neovim
 
+## Install Neovim
+
+```bash
+sudo add-apt-repository ppa:neovim-ppa/stable
+sudo apt-get update
+```
+
+## move configs to the right place
 cd to top level dir then run `stow neovim`
 
+## Set up the bells and whistles
 Set up Plug
 
 ```

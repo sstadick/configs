@@ -15,7 +15,7 @@ call plug#begin()
 Plug 'ciaranm/securemodelines'
 Plug 'vim-scripts/localvimrc'
 Plug 'justinmk/vim-sneak'
-Plug 'git@github.com:cohama/lexima.vim.git'
+Plug 'cohama/lexima.vim'
 Plug 'scrooloose/nerdcommenter'
 
 " GUI enhancements
