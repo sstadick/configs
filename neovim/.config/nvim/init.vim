@@ -15,7 +15,7 @@ call plug#begin()
 Plug 'ciaranm/securemodelines'
 Plug 'vim-scripts/localvimrc'
 Plug 'justinmk/vim-sneak'
-Plug 'git@github.com:cohama/lexima.vim.git'
+Plug 'cohama/lexima.vim'
 Plug 'scrooloose/nerdcommenter'
 
 " GUI enhancements
@@ -144,10 +144,14 @@ highlight link ALEVirtualTextInfo Todo
 highlight link ALEVirtualTextError WarningMsg
 highlight ALEError guibg=None
 highlight ALEWarning guibg=None
-let g:ale_sign_error = "✖"
-let g:ale_sign_warning = "⚠"
+"let g:ale_sign_error = "✖"
+"let g:ale_sign_warning = "⚠"
+"let g:ale_sign_info = "i"
+"let g:ale_sign_hint = "➤"
+let g:ale_sign_error = "X"
+let g:ale_sign_warning = "!"
 let g:ale_sign_info = "i"
-let g:ale_sign_hint = "➤"
+let g:ale_sign_hint = "~"
 
 nnoremap <silent> K :ALEHover<CR>
 nnoremap <silent> gd :ALEGoToDefinition<CR>
