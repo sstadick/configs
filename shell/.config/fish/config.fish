@@ -187,3 +187,4 @@ function fish_greeting
 	end
 	set_color normal
 end
+set -gx PATH $PATH ~/miniconda3/bin
