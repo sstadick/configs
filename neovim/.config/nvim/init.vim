@@ -44,6 +44,9 @@ Plug 'ncm2/ncm2-path'
 " Syntactic language support
 Plug 'cespare/vim-toml'
 Plug 'rust-lang/rust.vim'
+Plug 'JuliaEditorSupport/julia-vim'
+Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
+
 "Plug 'fatih/vim-go'
 Plug 'dag/vim-fish'
 Plug 'godlygeek/tabular'
@@ -420,6 +423,30 @@ autocmd BufWritePost *.less if filereadable("Makefile") | make | endif
 au Filetype rust source ~/.config/nvim/scripts/spacetab.vim
 au Filetype rust set colorcolumn=100
 
+" julia
+let g:default_julia_version = '1.2'
+
+" language server
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_serverCommands = {
+\   'julia': ['julia', '--startup-file=no', '--history-file=no', '-e', '
+\       using LanguageServer;
+\       using Pkg;
+\       import StaticLint;
+\       import SymbolServer;
+\       env_path = dirname(Pkg.Types.Context().env.project_file);
+\       debug = false; 
+\       
+\       server = LanguageServer.LanguageServerInstance(stdin, stdout, debug, env_path, "", Dict());
+\       server.runlinter = true;
+\       run(server);
+\   ']
+\ }
+
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+
 " Help filetype detection
 autocmd BufRead *.plot set filetype=gnuplot
 autocmd BufRead *.md set filetype=markdown
@@ -428,6 +455,7 @@ autocmd BufRead *.tex set filetype=tex
 autocmd BufRead *.trm set filetype=c
 autocmd BufRead *.xlsx.axlsx set filetype=ruby
 autocmd BufRead *.nf set filetype=nextflow
+autocmd BufRead,BufNewFile *.jl set filetype=julia
 
 " Script plugins
 autocmd Filetype html,xml,xsl,php source ~/.config/nvim/scripts/closetag.vim
