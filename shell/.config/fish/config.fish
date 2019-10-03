@@ -7,6 +7,8 @@ abbr -a vim 'nvim'
 
 if status --is-interactive
 	tmux -2 ^ /dev/null; and exec true
+else
+	set fish_greeting
 end
 
 if command -v exa > /dev/null
@@ -28,7 +30,7 @@ if test -f /usr/share/autojump/autojump.fish;
 	source /usr/share/autojump/autojump.fish;
 end
 
-if test -f $HOME/.config/base16-shell/profile_helper.fish
+if test -f $HOME/.config/base16-shell/profile_helper.fish; and status --is-interactive
 	source $HOME/.config/base16-shell/profile_helper.fish
 	base16-atelier-dune
 end
@@ -185,3 +187,4 @@ function fish_greeting
 	end
 	set_color normal
 end
+set -gx PATH $PATH ~/miniconda3/bin

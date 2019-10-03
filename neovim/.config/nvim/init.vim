@@ -46,6 +46,7 @@ Plug 'cespare/vim-toml'
 Plug 'rust-lang/rust.vim'
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
+Plug 'skaji/syntax-check-perl'
 
 "Plug 'fatih/vim-go'
 Plug 'dag/vim-fish'
@@ -63,7 +64,7 @@ if has('nvim')
 end
 
 " Setting up python path, make sure to have python3 -m pip install pynvim
-let g:python3_host_prog="python3"
+let g:python3_host_prog="/usr/bin/python3"
 
 " deal with colors
 if !has('gui_running')
@@ -129,6 +130,7 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_enter = 0
+let g:ale_fix_on_save = 1
 let g:ale_virtualtext_cursor = 1
 let g:ale_open_list = 0
 let g:ale_rust_rls_config = {
@@ -136,12 +138,11 @@ let g:ale_rust_rls_config = {
 		\ 'all_targets': 1,
 		\ 'build_on_save': 1,
 		\ 'clippy_preference': 'on'
-	\ }
+	\ },
 	\ }
 let g:ale_rust_rls_toolchain = ''
-let g:ale_linters = {'rust': ['rls']}
-highlight link ALEWarningSign Todo
-highlight link ALEErrorSign WarningMsg
+let g:ale_linters = {'rust': ['rls'], 'perl': ['syntax-check', 'perlcritic'], 'python': ['flake8']}
+let g:ale_fixers = {'perl': ['perltidy'], 'python': ['isort', 'yapf', 'remove_trailing_lines']}
 highlight link ALEVirtualTextWarning Todo
 highlight link ALEVirtualTextInfo Todo
 highlight link ALEVirtualTextError WarningMsg
@@ -155,6 +156,13 @@ let g:ale_sign_error = "X"
 let g:ale_sign_warning = "!"
 let g:ale_sign_info = "i"
 let g:ale_sign_hint = "~"
+let g:ale_perl_perlcritic_showrules = 1
+let g:ale_perl_perlcritic_options = '--theme pbp'
+let g:ale_perl_perl_options = '-c -Mwarnings -Mstrict -Ilib -It/lib'
+let g:ale_type_map = {
+\    'perl': {'ES': 'WS'}, 
+\    'perlcritic': {'ES': 'WS', 'E': 'W'},
+\}
 
 nnoremap <silent> K :ALEHover<CR>
 nnoremap <silent> gd :ALEGoToDefinition<CR>
@@ -186,8 +194,8 @@ let g:rust_clip_command = 'xclip -selection clipboard'
 "let g:racer_experimental_completer = 1
 let $RUST_SRC_PATH = systemlist("rustc --print sysroot")[0] . "/lib/rustlib/src/rust/src"
 
-" Python
-autocmd BufWritePre *.py 0,$!python3 -m yapf
+" Perl
+map <leader>pt <ESC>:%! perltidy<CR>
 
 " Completion
 autocmd BufEnter * call ncm2#enable_for_buffer()
@@ -202,6 +210,10 @@ let g:go_play_open_browser = 0
 let g:go_fmt_fail_silently = 1
 let g:go_fmt_command = "goimports"
 let g:go_bin_path = expand("~/dev/go/bin")
+
+" add yaml stuffs
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " =============================================================================
 " # Editor settings
@@ -272,6 +284,9 @@ nnoremap <silent> g* g*zz
 nnoremap ? ?\v
 nnoremap / /\v
 cnoremap %s/ %sm/
+
+" Allow multiple puts of same thing
+xnoremap p pgvy
 
 " =============================================================================
 " # GUI settings
