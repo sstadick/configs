@@ -5,6 +5,13 @@ source $HOME/.config/fish/env.fish
 # Abbreviations and Alias's
 abbr -a vim 'nvim'
 
+# Install fisher if it's not installed
+if not functions -q fisher
+    set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
+    curl https://git.io/fisher --create-dirs -sLo $XDG_CONFIG_HOME/fish/functions/fisher.fish
+    fish -c fisher
+end
+
 if status --is-interactive
 	tmux -2 ^ /dev/null; and exec true
 else

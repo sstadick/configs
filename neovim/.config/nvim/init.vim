@@ -47,6 +47,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
 Plug 'skaji/syntax-check-perl'
+Plug 'broadinstitute/vim-wdl'
 
 "Plug 'fatih/vim-go'
 Plug 'dag/vim-fish'
@@ -64,7 +65,7 @@ if has('nvim')
 end
 
 " Setting up python path, make sure to have python3 -m pip install pynvim
-let g:python3_host_prog="/usr/bin/python3"
+let g:python3_host_prog="/usr/local/bin/python3"
 
 " deal with colors
 if !has('gui_running')
@@ -141,8 +142,8 @@ let g:ale_rust_rls_config = {
 	\ },
 	\ }
 let g:ale_rust_rls_toolchain = ''
-let g:ale_linters = {'rust': ['rls'], 'perl': ['syntax-check', 'perlcritic'], 'python': ['flake8']}
-let g:ale_fixers = {'perl': ['perltidy'], 'python': ['isort', 'yapf', 'remove_trailing_lines']}
+let g:ale_linters = {'sh': ['shellcheck'], 'rust': ['rls'], 'perl': ['syntax-check', 'perlcritic'], 'python': ['flake8', 'mypy']}
+let g:ale_fixers = {'perl': ['perltidy'], 'python': ['isort', 'black', 'remove_trailing_lines']}
 highlight link ALEVirtualTextWarning Todo
 highlight link ALEVirtualTextInfo Todo
 highlight link ALEVirtualTextError WarningMsg
