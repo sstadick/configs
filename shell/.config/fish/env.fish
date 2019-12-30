@@ -3,7 +3,9 @@ set -U fish_user_paths $HOME/.config/base16-shell \
 	$HOME/.cargo/bin \
 	/snap/bin \
 	$HOME/.poetry/env \
-	$HOME/.sdkman/candidates/*/current/bin/
+	$HOME/.sdkman/candidates/*/current/bin/ \
+	$HOME/dev/devtools_py3/bin
+
 set -U EDITOR nvim
 set -U TZ "America/Lox_Angeles"
 
