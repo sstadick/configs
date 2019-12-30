@@ -1,4 +1,9 @@
-set -U fish_user_paths $HOME/.config/base16-shell $HOME/bin $HOME/.cargo/bin /snap/bin
+set -U fish_user_paths $HOME/.config/base16-shell \
+        $HOME/bin \
+	$HOME/.cargo/bin \
+	/snap/bin \
+	$HOME/.poetry/env \
+	$HOME/.sdkman/candidates/*/current/bin/
 set -U EDITOR nvim
 set -U TZ "America/Lox_Angeles"
 

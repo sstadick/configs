@@ -47,6 +47,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
 Plug 'skaji/syntax-check-perl'
+Plug 'derekwyatt/vim-scala'
 
 "Plug 'fatih/vim-go'
 Plug 'dag/vim-fish'
@@ -141,8 +142,8 @@ let g:ale_rust_rls_config = {
 	\ },
 	\ }
 let g:ale_rust_rls_toolchain = ''
-let g:ale_linters = {'rust': ['rls'], 'perl': ['syntax-check', 'perlcritic'], 'python': ['flake8']}
-let g:ale_fixers = {'perl': ['perltidy'], 'python': ['isort', 'yapf', 'remove_trailing_lines']}
+let g:ale_linters = {'scala': ['scalac'], 'rust': ['rls'], 'perl': ['syntax-check', 'perlcritic'], 'python': ['flake8']}
+let g:ale_fixers = {'scala': ['scalafmt'], 'perl': ['perltidy'], 'python': ['isort', 'yapf', 'remove_trailing_lines']}
 highlight link ALEVirtualTextWarning Todo
 highlight link ALEVirtualTextInfo Todo
 highlight link ALEVirtualTextError WarningMsg
@@ -450,7 +451,7 @@ let g:LanguageClient_serverCommands = {
 \       import StaticLint;
 \       import SymbolServer;
 \       env_path = dirname(Pkg.Types.Context().env.project_file);
-\       debug = false; 
+\       debug = true;
 \       
 \       server = LanguageServer.LanguageServerInstance(stdin, stdout, debug, env_path, "", Dict());
 \       server.runlinter = true;
@@ -471,9 +472,13 @@ autocmd BufRead *.trm set filetype=c
 autocmd BufRead *.xlsx.axlsx set filetype=ruby
 autocmd BufRead *.nf set filetype=nextflow
 autocmd BufRead,BufNewFile *.jl set filetype=julia
+autocmd BufRead,BufNewFile *.sbt set filetype=scala
+autocmd BufRead,BufNewFile *.sc set filetype=scala
 
 " Script plugins
 autocmd Filetype html,xml,xsl,php source ~/.config/nvim/scripts/closetag.vim
+
+
 
 " =============================================================================
 " # Footer
