@@ -17,6 +17,7 @@ Plug 'vim-scripts/localvimrc'
 Plug 'justinmk/vim-sneak'
 Plug 'cohama/lexima.vim'
 Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
 
 " GUI enhancements
 Plug 'itchyny/lightline.vim'
@@ -49,6 +50,8 @@ Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh
 Plug 'skaji/syntax-check-perl'
 Plug 'derekwyatt/vim-scala'
 Plug 'broadinstitute/vim-wdl'
+Plug 'alaviss/nim.nvim'
+Plug 'ziglang/zig.vim'
 
 "Plug 'fatih/vim-go'
 Plug 'dag/vim-fish'
@@ -95,6 +98,10 @@ let g:secure_modelines_allowed_items = [
                 \ "colorcolumn"
                 \ ]
 
+" NerdTree Settings
+" Open and close nerdtree
+nmap <leader>nt :NERDTreeToggle<cr>
+nmap <leader>nf :NERDTreeFocus<cr>
 " Base16
 " Colors
 set background=dark
@@ -142,6 +149,7 @@ let g:ale_rust_rls_config = {
 		\ 'clippy_preference': 'on'
 	\ },
 	\ }
+let g:ale_scala_scalafmt_options = '--config .scalafmt.conf'
 let g:ale_rust_rls_toolchain = ''
 let g:ale_linters = {'sh': ['shellcheck'], 'scala': ['scalac'], 'rust': ['rls'], 'perl': ['syntax-check', 'perlcritic'], 'python': ['flake8', 'mypy']}
 let g:ale_fixers = {'scala': ['scalafmt'], 'perl': ['perltidy'], 'python': ['isort', 'black', 'remove_trailing_lines']}
@@ -475,6 +483,8 @@ autocmd BufRead *.nf set filetype=nextflow
 autocmd BufRead,BufNewFile *.jl set filetype=julia
 autocmd BufRead,BufNewFile *.sbt set filetype=scala
 autocmd BufRead,BufNewFile *.sc set filetype=scala
+autocmd BufRead,BufNewFile *.wdl set filetype=wdl
+autocmd FileType wdl setlocal expandtab
 
 " Script plugins
 autocmd Filetype html,xml,xsl,php source ~/.config/nvim/scripts/closetag.vim
