@@ -52,6 +52,7 @@ Plug 'derekwyatt/vim-scala'
 Plug 'broadinstitute/vim-wdl'
 Plug 'alaviss/nim.nvim'
 Plug 'ziglang/zig.vim'
+Plug 'alaviss/nim.nvim'
 
 "Plug 'fatih/vim-go'
 Plug 'dag/vim-fish'
@@ -151,8 +152,8 @@ let g:ale_rust_rls_config = {
 	\ }
 let g:ale_scala_scalafmt_options = '--config .scalafmt.conf'
 let g:ale_rust_rls_toolchain = ''
-let g:ale_linters = {'sh': ['shellcheck'], 'scala': ['scalac'], 'rust': ['rls'], 'perl': ['syntax-check', 'perlcritic'], 'python': ['flake8', 'mypy']}
-let g:ale_fixers = {'scala': ['scalafmt'], 'perl': ['perltidy'], 'python': ['isort', 'black', 'remove_trailing_lines']}
+let g:ale_linters = {'nim': ['nimcheck'], 'sh': ['shellcheck'], 'scala': ['scalac'], 'rust': ['rls'], 'perl': ['syntax-check', 'perlcritic'], 'python': ['flake8', 'mypy']}
+let g:ale_fixers = {'nim': ['nimpretty'], 'scala': ['scalafmt'], 'perl': ['perltidy'], 'python': ['isort', 'black', 'remove_trailing_lines']}
 highlight link ALEVirtualTextWarning Todo
 highlight link ALEVirtualTextInfo Todo
 highlight link ALEVirtualTextError WarningMsg

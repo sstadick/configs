@@ -42,6 +42,11 @@ if test -f $HOME/.config/base16-shell/profile_helper.fish; and status --is-inter
 	base16-atelier-dune
 end
 
+function code
+  set location "$PWD/$argv"
+  open -n -b "com.microsoft.VSCode" --args $location
+end
+
 function ssh
 	switch $argv[1]
 	case "*.amazonaws.com"
@@ -195,3 +200,4 @@ function fish_greeting
 	set_color normal
 end
 set -gx PATH $PATH ~/miniconda3/bin
+set -g fish_user_paths "/usr/local/opt/llvm@7/bin" $fish_user_paths
